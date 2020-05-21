@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   scope '/api' do
     resources :users, :transactions
   end
+
+  get '/stock-price', to: 'transactions#view_stock_price'
 end

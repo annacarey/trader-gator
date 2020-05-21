@@ -10,6 +10,11 @@ class App extends Component {
       .then(response => response.json())
       .then(json => console.log(json))
       .catch(error => console.log(error));
+
+    window.fetch('/stock-price')
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(error => console.log(error));
   }
 
   render() {
