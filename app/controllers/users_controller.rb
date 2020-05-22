@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     def signup
         user = User.create(user_params)
+        user.account_balance = 5000
         render json: user
     end 
     

@@ -19,7 +19,7 @@ class Signup extends React.Component {
         // Signup fetch call to backend (via redux)
         this.props.signup(this.state)
 
-        // Push to 
+        // Push to portfolio page
     }
 
     render () {
