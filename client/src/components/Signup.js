@@ -13,6 +13,20 @@ class Signup extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
         console.log("submit worked")
+
+        fetch('/api/signup', {
+            method: "POST",
+            headers: {'content-type': 'application/json',
+                'accept': 'application/json'},
+            body: JSON.stringify({ user:
+                this.state
+            })
+        }).then((response) => response.json())
+          .then(response => {
+            console.log(response)
+          })
+          
+        // Signup fetch call to backend (via redux)
     }
 
     render () {
