@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 
-function Purchase() {  
+function Purchase(props) {  
 
     const [ticker, setTicker] = useState("");
     const [quantity, setQuantity] = useState("");
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log("submit worked", ticker, quantity)
+        console.log("submit worked", ticker, quantity, props.id)
         fetch('/api/purchase', {
             method: "POST",
             headers: {'content-type': 'application/json',
                 'accept': 'application/json'},
-            body: JSON.stringify({ticker, quantity})
+            body: JSON.stringify({ticker, quantity, id: props.id})
         }).then((response) => response.json())
           .then(response => {
             console.log(response)
@@ -30,4 +31,10 @@ function Purchase() {
     )
 }
 
-export default Purchase
+const msp = state => {
+    return {
+       id: state.id
+    }
+}
+
+export default connect(msp)(Purchase)
