@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     
     # Real routes
     post '/signup', to: 'users#signup'
+    post '/purchase', to: 'transactions#create'
   end
 
   # Placeholder route for testing

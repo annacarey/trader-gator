@@ -8,6 +8,15 @@ function Purchase() {
     const handleSubmit = e => {
         e.preventDefault()
         console.log("submit worked", ticker, quantity)
+        fetch('/api/purchase', {
+            method: "POST",
+            headers: {'content-type': 'application/json',
+                'accept': 'application/json'},
+            body: JSON.stringify({ticker, quantity})
+        }).then((response) => response.json())
+          .then(response => {
+            console.log(response)
+          })
     }
 
     return (
