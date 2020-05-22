@@ -9,6 +9,7 @@ class TransactionsController < ApplicationController
     # Testing out the connection to API
     # Using dB's IEX Ruby Client - https://github.com/dblock/iex-ruby-client
     def view_stock_price
+        byebug
         client = IEX::Api::Client.new(
             publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
             secret_token: ENV['IEX_API_SECRET_TOKEN'],

@@ -42,3 +42,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # IEX Ruby gem
 gem 'iex-ruby-client'
+
+# Figaro for .ENV
+gem 'figaro'
