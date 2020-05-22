@@ -8,7 +8,6 @@ class UserContainer extends React.Component {
 
         return (
             <div>
-                Hello
                 <Switch>
                     <Route exact path ="/" render={ () => <Signup /> } /> 
                     <Route exact path ="/portfolio" render={ () => <PortfolioContainer /> } /> 

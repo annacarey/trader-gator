@@ -1,10 +1,13 @@
 import React from 'react';
+import Portfolio from '../components/Portfolio'
+import Purchase from '../components/Purchase'
 
 function PortfolioContainer() {  
 
     return (
         <div>
-            Portfolio Container
+            <Portfolio />
+            <Purchase />
         </div>
     )
 }
