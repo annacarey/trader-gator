@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {signupUserActionCreator} from '../actionCreators'
 
 class Signup extends React.Component {  
 
@@ -14,19 +16,10 @@ class Signup extends React.Component {
         e.preventDefault()
         console.log("submit worked")
 
-        fetch('/api/signup', {
-            method: "POST",
-            headers: {'content-type': 'application/json',
-                'accept': 'application/json'},
-            body: JSON.stringify({ user:
-                this.state
-            })
-        }).then((response) => response.json())
-          .then(response => {
-            console.log(response)
-          })
-          
         // Signup fetch call to backend (via redux)
+        this.props.signup(this.state)
+
+        // Push to 
     }
 
     render () {
@@ -43,8 +36,13 @@ class Signup extends React.Component {
                 </form>
             </div>
         )
-    }
-    
+    } 
 }
 
-export default Signup
+const mdp = dispatch => {
+    return {
+        signup: userInfo => dispatch(signupUserActionCreator(userInfo))
+    }
+}
+
+export default connect(null, mdp)(Signup)

@@ -8,8 +8,10 @@ const initialState = {
 function reducer(state = initialState, action) {
 
     switch(action.type) {
-        case 'GET_USER_STARTED':
-            return {...state, loading: true }
+        case 'SIGNUP_USER':
+            return action.payload
+        default:
+            return state
     }
 }
 
