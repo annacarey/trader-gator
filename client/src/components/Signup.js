@@ -14,7 +14,6 @@ class Signup extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log("submit worked")
 
         // Signup fetch call to backend (via redux)
         this.props.signup(this.state)
@@ -23,6 +22,7 @@ class Signup extends React.Component {
     }
 
     render () {
+        console.log(this.props.user)
         return (
             <div>
                 Signup
@@ -45,4 +45,11 @@ const mdp = dispatch => {
     }
 }
 
-export default connect(null, mdp)(Signup)
+const msp = state => {
+    console.log(state)
+    return {
+        user: state.user
+    }
+}
+
+export default connect(msp, mdp)(Signup)

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {purchaseActionCreator} from '../actionCreators'
 
 function Purchase(props) {  
 
@@ -8,23 +9,14 @@ function Purchase(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log("submit worked", ticker, quantity, props.id)
-        fetch('/api/purchase', {
-            method: "POST",
-            headers: {'content-type': 'application/json',
-                'accept': 'application/json'},
-            body: JSON.stringify({ticker, quantity, id: props.id})
-        }).then((response) => response.json())
-          .then(response => {
-            console.log(response)
-          })
+        props.purchase(ticker, quantity, props.id)
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <input onChange={e => setTicker(e.target.value)} value={ticker} type="text" name="ticker" placeholder="Ticker symbol..." />
-                <input onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="0" name="ticker" placeholder="Ticker symbol..." />
+                <input onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="0" name="ticker" placeholder="Number of shares..." />
                 <input type="submit" value="Submit" />
             </form>
         </div>
@@ -32,9 +24,16 @@ function Purchase(props) {
 }
 
 const msp = state => {
+    console.log(state)
     return {
-       id: state.id
+       id: state.user.id
     }
 }
 
-export default connect(msp)(Purchase)
+const mdp = dispatch => {
+    return {
+        purchase: (ticker, quantity, userId) => dispatch(purchaseActionCreator(ticker, quantity, userId))
+    }
+}
+
+export default connect(msp, mdp)(Purchase)
