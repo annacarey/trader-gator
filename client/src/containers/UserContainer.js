@@ -1,10 +1,18 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Signup from '../components/Signup'
 import PortfolioContainer from './PortfolioContainer'
+import {getPortfolioActionCreator} from '../actionCreators'
 
 class UserContainer extends React.Component {  
+
+    componentDidMount() {
+        this.props.getPortfolio(this.props.id)
+    }
+
     render() {
+        console.log(this.props.portfolio)
 
         return (
             <div>
@@ -17,4 +25,18 @@ class UserContainer extends React.Component {
     }
 }
 
-export default UserContainer
+const msp = state => {
+    return {
+       id: state.user.id,
+       portfolio: state.portfolio
+    }
+}
+
+const mdp = dispatch => {
+    return {
+        getPortfolio: id => dispatch(getPortfolioActionCreator(id))
+    }
+}
+
+export default connect(msp, mdp)(UserContainer)
+

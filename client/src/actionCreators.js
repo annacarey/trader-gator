@@ -45,6 +45,21 @@ const purchaseStock = transaction => ({
     payload: {transaction}
 })
 
+// Load portfolio
 
+const getPortfolioActionCreator = userId => dispatch => {
+    console.log("in portfolio action creator")
+    return fetch(`/api/${userId}/portfolio`)
+    .then(response => response.json())
+    .then(response => {
+        console.log(response)
+        dispatch(getPortfolio(response))
+    });
+}
 
-export {signupUserActionCreator, purchaseActionCreator}
+const getPortfolio = portfolio => ({
+    type: 'GET_PORTFOLIO',
+    payload: {portfolio}
+})
+
+export {signupUserActionCreator, purchaseActionCreator, getPortfolioActionCreator}
