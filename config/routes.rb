@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # Real routes
     post '/signup', to: 'users#signup'
     post '/purchase', to: 'transactions#create'
-    get '/:id/portfolio', to: 'transactions#portfolio'
+    get '/:id/portfolio', to: 'users#portfolio'
   end
 
   # Placeholder route for testing

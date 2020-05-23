@@ -24,7 +24,6 @@ function Purchase(props) {
 }
 
 const msp = state => {
-    console.log(state)
     return {
        id: state.user.id
     }

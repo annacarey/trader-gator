@@ -12,6 +12,11 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    def portfolio
+        user = User.find(params[:id])
+        render json: user.portfolio
+    end 
+
     private
 
     def user_params
