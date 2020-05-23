@@ -14,7 +14,7 @@ function Portfolio(props) {
                 </tr>
                 {props.portfolio.map(portfolio => {
                     // Need to add in grey color if status is 'equal'
-                    return <tr>
+                    return <tr key={portfolio.ticker_symbol}>
                         <td style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</td>
                         <td>{portfolio.stock_name}</td>
                         <td>{portfolio.total_value}</td>
