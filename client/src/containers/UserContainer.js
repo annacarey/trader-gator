@@ -14,7 +14,6 @@ class UserContainer extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <Switch>
@@ -28,8 +27,7 @@ class UserContainer extends React.Component {
 
 const msp = state => {
     return {
-       id: state.user.id,
-       portfolio: state.portfolio
+       id: state.user.id
     }
 }
 

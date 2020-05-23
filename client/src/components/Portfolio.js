@@ -1,11 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-function Portfolio() {  
+function Portfolio(props) {  
 
+    console.log(props.portfolio)
     return (
         <div>
-            Portfolio 
+            <table>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Company Name</th>
+                    <th>Current Value</th>
+                    <th>Number of Shares Owned</th>
+                </tr>
+                {props.portfolio.map(portfolio => {
+                    return <tr>
+                        <td style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</td>
+                        <td>{portfolio.stock_name}</td>
+                        <td>{portfolio.total_value}</td>
+                        <td>{portfolio.quantity}</td>
+                    </tr>
+                    
+                })}
+            </table>
         </div>
     )
 }

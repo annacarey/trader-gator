@@ -7,7 +7,7 @@ const initialState = {
         accountBalance: 0,
     }, 
     transactions: [],
-    portfolio: {}
+    portfolio: []
 }
 
 function reducer(state = initialState, action) {
@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
         case 'PURCHASE_STOCK':
             return {...state, transactions: [... state.transactions, action.payload]}
         case 'GET_PORTFOLIO':
-            return {...state, portfolio: action.payload}
+            return {...state, portfolio: action.payload.portfolio}
         default:
             return state
     }
