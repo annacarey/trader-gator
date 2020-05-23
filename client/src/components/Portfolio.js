@@ -5,6 +5,7 @@ function Portfolio(props) {
 
     return (
         <div>
+            <h3>Current Balance: {props.balance}</h3>
             <table>
                 <tr>
                     <th>Symbol</th>
@@ -29,7 +30,8 @@ function Portfolio(props) {
 
 const msp = state => {
     return {
-       portfolio: state.portfolio
+       portfolio: state.portfolio,
+       balance: state.user.accountBalance
     }
 }
 
