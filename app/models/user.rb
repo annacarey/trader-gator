@@ -5,21 +5,32 @@ class User < ApplicationRecord
 
     # Aggregate the transactions into a portfolio of stocks with current total market value of shares
     def portfolio
+        quantity_of_stocks_array = self.transactions.group_by{|transaction| transaction.ticker_symbol}.values.map{|transactions| [transactions[0].slice(:ticker_symbol, :stock_name), transactions.map{|transaction| transaction.quantity }.reduce(:+)]}
+        quantity_of_stocks_hash = quantity_of_stocks_array.map{|item| item[0].merge!({"quantity": item[1]})}
 
-        # Get all of a user's transactions into a hash with the ticker_symbol as the key and the value is an array of transactions for that stock
-        transaction_hash = self.transactions.group_by{|transaction| transaction.ticker_symbol}
-        
-        # Transform the hash into an array with a key value pair, map the array (value) into an array of just the quantity, add the quantities, and then transform back into a hash (key is ticker symbol and value is total quantity of shares owned)
-        stocks_with_total_quantity_of_shares = transaction_hash.map {|key, value| [key, value.map{|transaction| transaction.quantity }.reduce(:+)]}.to_h
-
-        # Loop through the hash and update the values based on the stock's current value (by making API call)
         client = IEX::Api::Client.new(
             publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
             secret_token: ENV['IEX_API_SECRET_TOKEN'],
             endpoint: 'https://sandbox.iexapis.com/stable'
             )
-        stocks_with_total_quantity_of_shares.map{|ticker, quantity| [ticker, client.price(ticker)*quantity]}.to_h
+        
+        # Add the total current value of the shares based on current stock price
+        stocks_quantity_current_total_value = quantity_of_stocks_hash.map{|stock| stock.merge!({"total_value": (client.price(stock[:ticker_symbol]) * stock[:quantity])})}
+    
+        # Add whether or not it is up from the day open
+        stocks_quantity_total_up_down = stocks_quantity_current_total_value.map do |stock| 
+            ohlc = client.ohlc(stock[:ticker_symbol]) # Gets the open, high, low, close for a given stock. See ruby client documentation for more info: https://github.com/dblock/iex-ruby-client#get-a-ohlc-open-high-low-close-price
+            if client.price(stock[:ticker_symbol]) < ohlc.open.price # set day_status attribute as lower if current price is lower than current open price
+                day_status = "lower"
+            elsif client.price(stock[:ticker_symbol]) > ohlc.open.price # set day_status attribute as higher if current price is higher than open price
+                day_status = "higher"
+            else # set day_status attribute as equal if current price is equal to open price
+                day_status = "equal"
+            end 
+            stock.merge!({"day_status": day_status})
+        end
 
     end
-
 end
+
+

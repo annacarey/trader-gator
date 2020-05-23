@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 function Portfolio() {  
 
@@ -9,5 +10,10 @@ function Portfolio() {
     )
 }
 
+const msp = state => {
+    return {
+       portfolio: state.portfolio
+    }
+}
 
-export default Portfolio
+export default connect(msp)(Portfolio)

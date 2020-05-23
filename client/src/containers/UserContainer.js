@@ -9,10 +9,11 @@ class UserContainer extends React.Component {
 
     componentDidMount() {
         this.props.getPortfolio(this.props.id)
+
+        // Get transactions
     }
 
     render() {
-        console.log(this.props.portfolio)
 
         return (
             <div>
