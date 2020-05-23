@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 function Portfolio(props) {  
 
-    console.log(props.portfolio)
     return (
         <div>
             <table>
@@ -14,6 +13,7 @@ function Portfolio(props) {
                     <th>Number of Shares Owned</th>
                 </tr>
                 {props.portfolio.map(portfolio => {
+                    // Need to add in grey color if status is 'equal'
                     return <tr>
                         <td style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</td>
                         <td>{portfolio.stock_name}</td>
