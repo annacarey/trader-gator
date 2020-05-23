@@ -39,13 +39,14 @@ class TransactionsController < ApplicationController
             else 
                 transaction = Transaction.create(user_id: user_id, stock_name: stock_name, ticker_symbol: ticker_symbol, quantity: quantity, current_price_per_share: price, total_price: total_price)
                 user.account_balance -= total_price # Decrement the user's account balance by the amount of the transaction
+                user.save
                 render json: {transaction: transaction}
             end 
         end
     end
 
     def portfolio
-        
+
     end 
 
 
