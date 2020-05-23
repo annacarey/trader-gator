@@ -44,6 +44,10 @@ class TransactionsController < ApplicationController
         end
     end
 
+    def portfolio
+        
+    end 
+
 
     # Testing out the connection to API
     # Using dB's IEX Ruby Client - https://github.com/dblock/iex-ruby-client
