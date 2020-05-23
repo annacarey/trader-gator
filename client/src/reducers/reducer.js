@@ -19,6 +19,8 @@ function reducer(state = initialState, action) {
             return {...state, transactions: [... state.transactions, action.payload]}
         case 'GET_PORTFOLIO':
             return {...state, portfolio: action.payload.portfolio}
+        case 'GET_TRANSACTIONS':
+            return {...state, transactions: action.payload.transactions}
         default:
             return state
     }

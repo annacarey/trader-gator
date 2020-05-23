@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 function Transactions(props) {  
+    console.log(props.transactions)
 
     return (
         <div>Transaction
@@ -11,8 +12,7 @@ function Transactions(props) {
 
 const msp = state => {
     return {
-       portfolio: state.portfolio,
-       balance: state.user.accountBalance
+       transactions: state.transactions
     }
 }
 

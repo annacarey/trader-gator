@@ -45,15 +45,13 @@ const purchaseStock = transaction => ({
     payload: {transaction}
 })
 
-// Load portfolio
-
+// Load user's portfolio
 const getPortfolioActionCreator = userId => dispatch => {
     console.log("in portfolio action creator")
     return fetch(`/api/${userId}/portfolio`)
     .then(response => response.json())
-    .then(response => {
-        console.log(response)
-        dispatch(getPortfolio(response))
+    .then(portfolioArray => {
+        dispatch(getPortfolio(portfolioArray))
     });
 }
 
@@ -62,4 +60,19 @@ const getPortfolio = portfolio => ({
     payload: {portfolio}
 })
 
-export {signupUserActionCreator, purchaseActionCreator, getPortfolioActionCreator}
+// Load user's transactions
+const getTransactionsActionCreator = userId => dispatch => {
+    return fetch(`/api/${userId}/transactions`)
+    .then(response => response.json())
+    .then(transactions => {
+        dispatch(getTransactions(transactions))
+    });
+}
+
+const getTransactions = transactions => ({
+    type: 'GET_TRANSACTIONS',
+    payload: {transactions}
+})
+
+
+export {signupUserActionCreator, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}

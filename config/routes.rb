@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post '/signup', to: 'users#signup'
     post '/purchase', to: 'transactions#create'
     get '/:id/portfolio', to: 'users#portfolio'
+    get '/:id/transactions', to: 'transactions#user_transactions'
   end
 
   # Placeholder route for testing

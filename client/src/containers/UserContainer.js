@@ -4,14 +4,18 @@ import {connect} from 'react-redux';
 import Signup from '../components/Signup'
 import PortfolioContainer from './PortfolioContainer'
 import Transactions from '../components/Transactions'
-import {getPortfolioActionCreator} from '../actionCreators'
+import {getPortfolioActionCreator, getTransactionsActionCreator} from '../actionCreators'
 
 class UserContainer extends React.Component {  
 
     componentDidMount() {
+
+        // Load user's portfolio
         this.props.getPortfolio(this.props.id)
 
-        // Get transactions
+        // Load user's transactions
+        this.props.getTransactions(this.props.id)
+        
     }
 
     render() {
@@ -35,7 +39,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        getPortfolio: id => dispatch(getPortfolioActionCreator(id))
+        getPortfolio: id => dispatch(getPortfolioActionCreator(id)),
+        getTransactions: id=> dispatch(getTransactionsActionCreator(id))
     }
 }
 
