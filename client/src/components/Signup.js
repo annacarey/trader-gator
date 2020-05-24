@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {signupUserActionCreator} from '../actionCreators'
 
 class Signup extends React.Component {  
@@ -37,6 +37,7 @@ class Signup extends React.Component {
                     <input onChange={e => this.setState({passwordConfirmation: e.target.value})} type="password" name="password" placeholder="Confirm password..." />
                     <input type="submit" value="Signup" />
                 </form>
+                <p>Already have an account? <Link to='/login' exact>Log in here</Link></p>
             </div>
         )
     } 

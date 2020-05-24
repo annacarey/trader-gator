@@ -5,6 +5,7 @@ function Portfolio(props) {
 
     return (
         <div>
+            {/* Make sure account balance updates in addition to portfolio} */}
             <h3>Current Balance: {props.balance}</h3>
             <table>
                 <tr>
