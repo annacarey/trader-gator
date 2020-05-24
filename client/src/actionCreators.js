@@ -69,6 +69,7 @@ const getTransactionsActionCreator = userId => dispatch => {
     .then(response => response.json())
     .then(transactionsResponse => {
         console.log(transactionsResponse)
+        // Make sure transactions are sorted by date in descending order (most recent is first)
         const transactions = transactionsResponse.map(transactionResponse => {
             return {
                 tickerSymbol: transactionResponse.ticker_symbol,
