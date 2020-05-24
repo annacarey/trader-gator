@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope '/api' do
-    # Placeholder routes 
+    # Placeholder routes for deletion
     get '/users', to: 'users#index'
     get '/transactions', to: 'transactions#index'
     
@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     post '/purchase', to: 'transactions#create'
     get '/:id/portfolio', to: 'users#portfolio'
     get '/:id/transactions', to: 'transactions#user_transactions'
+    post '/login', to: 'auth#create'
+
   end
 
   # Placeholder route for testing

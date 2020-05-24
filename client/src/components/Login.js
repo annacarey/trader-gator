@@ -7,11 +7,30 @@ function UserLogin(props) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    console.log("email pass", email, password)
 
     const handleSubmit = e => {
+        console.log(email, password)
         e.preventDefault()
-        // props.login(email, password)
+        fetch('/api/login', {
+            method: 'POST',
+        headers: {'content-type': 'application/json',
+            'accept': 'application/json'},
+            credentials: 'include',
+            body: JSON.stringify({email: email, password: password})
+        }).then(response => response.json())
+        .then(response => console.log(response))
     }
+    // fetch('/api/signup', {
+    //     method: "POST",
+    //     headers: {'content-type': 'application/json',
+    //         'accept': 'application/json'},
+    //     body: JSON.stringify({user: userInfo})
+    // }).then((response) => response.json())
+    //   .then(response => {
+    //     console.log('signup user', response)
+    //     dispatch(signupUser(response))
+    //   })
 
     return (
         <div>

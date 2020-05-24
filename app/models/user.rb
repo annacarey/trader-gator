@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
     has_many :transactions
 
+    has_secure_password
+
 
     # Aggregate the transactions into a portfolio of stocks with current total market value of shares
     def portfolio

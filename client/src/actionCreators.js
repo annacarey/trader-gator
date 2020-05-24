@@ -11,7 +11,7 @@ const signupUserActionCreator = userInfo => dispatch => {
         body: JSON.stringify({user: userInfo})
     }).then((response) => response.json())
       .then(response => {
-        console.log(response)
+        console.log('signup user', response)
         dispatch(signupUser(response))
       })
 }
@@ -84,15 +84,6 @@ const getTransactionsActionCreator = userId => dispatch => {
     });
 }
 
-// created_at: "2020-05-23T00:16:32.583Z"
-// current_price_per_share: "1453.99"
-// id: 6
-// quantity: 1
-// stock_name: "Alphabet, Inc."
-// ticker_symbol: "GOOGL"
-// total_price: "1453.99"
-// updated_at: "2020-05-23T00:16:32.583Z"
-// user_id: 32
 const getTransactions = transactions => ({
     type: 'GET_TRANSACTIONS',
     payload: {transactions}
