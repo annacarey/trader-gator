@@ -1,9 +1,14 @@
 class User < ApplicationRecord
 
+    # Validations for user attributes
+    validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+    validates :password, presence: true, length: { minimum: 6 }
+    validates :first_name, presence: true 
+    validates :last_name, presence: true
+
     has_many :transactions
 
     has_secure_password
-
 
     # Aggregate the transactions into a portfolio of stocks with current total market value of shares
     def portfolio

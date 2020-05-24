@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
 
     def signup
-        user = User.create(user_params)
-        user.account_balance = 5000
-        user.save
-        render json: user
+        user = User.new(user_params)
+        if user.save
+            user.account_balance = 5000
+            render json: user
+        else 
+            errors = user.errors.full_messages
+            render json: {error: errors}
+        end
     end 
     
     def index
