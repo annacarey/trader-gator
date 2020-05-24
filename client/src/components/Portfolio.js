@@ -30,6 +30,7 @@ function Portfolio(props) {
 }
 
 const msp = state => {
+    console.log('in portfolio msp', state)
     return {
        portfolio: state.portfolio,
        balance: state.user.accountBalance,

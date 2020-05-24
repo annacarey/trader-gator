@@ -21,6 +21,26 @@ const signupUser = user => ({
     payload: {user}
 })
 
+// Log in user
+const loginUserActionCreator = (email, password) => dispatch => {
+    return fetch('/api/login', {
+        method: 'POST',
+        headers: {'content-type': 'application/json',
+        'accept': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({email, password})
+    }).then(response => response.json())
+    .then(response => {
+        console.log(response)
+        dispatch(loginUser(response.user))
+    })
+}
+
+const loginUser = user => ({
+    type: 'LOGIN_USER',
+    payload: {user}
+})
+
 // Purchase shares of a stock
 const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
     console.log("user id", userId)
@@ -90,4 +110,4 @@ const getTransactions = transactions => ({
 })
 
 
-export {signupUserActionCreator, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}
+export {signupUserActionCreator, loginUserActionCreator, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}

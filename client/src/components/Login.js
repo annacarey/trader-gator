@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from "react-router-dom";
-import {getUserActionCreator} from '../actionCreators'
+import {loginUserActionCreator} from '../actionCreators'
 
 function UserLogin(props) {
 
@@ -10,27 +10,9 @@ function UserLogin(props) {
     console.log("email pass", email, password)
 
     const handleSubmit = e => {
-        console.log(email, password)
         e.preventDefault()
-        fetch('/api/login', {
-            method: 'POST',
-        headers: {'content-type': 'application/json',
-            'accept': 'application/json'},
-            credentials: 'include',
-            body: JSON.stringify({email: email, password: password})
-        }).then(response => response.json())
-        .then(response => console.log(response))
+        props.login(email, password).then(() => props.history.push('/portfolio'))
     }
-    // fetch('/api/signup', {
-    //     method: "POST",
-    //     headers: {'content-type': 'application/json',
-    //         'accept': 'application/json'},
-    //     body: JSON.stringify({user: userInfo})
-    // }).then((response) => response.json())
-    //   .then(response => {
-    //     console.log('signup user', response)
-    //     dispatch(signupUser(response))
-    //   })
 
     return (
         <div>
@@ -49,13 +31,13 @@ function UserLogin(props) {
 
 const msp = state => {
     return {
-       
+       user: state.user
     }
 }
 
 const mdp = dispatch => {
     return {
-        // login: (email, password) => dispatch(getUserActionCreator(email, password))
+        login: (email, password) => dispatch(loginUserActionCreator(email, password))
     }
 }
 
