@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Navigation from '../components/Navigation'
+import {getTransactionsActionCreator} from '../actionCreators'
 
 function Transactions(props) {  
     console.log(props.transactions)
+
+    useEffect(() => {
+        props.getTransactions(props.id)
+    }, []);
 
     return (
         <div> 
@@ -19,7 +24,7 @@ function Transactions(props) {
                 </tr>
                 {props.transactions.map(transaction => {
                     // Need to add in grey color if status is 'equal'
-                    return <tr key={transaction.ticker_symbol}>
+                    return <tr key={transaction.tickerSymbol}>
                         <td>{transaction.tickerSymbol}</td>
                         <td>{transaction.stockName}</td>
                         <td>{transaction.totalPrice}</td>
@@ -35,8 +40,15 @@ function Transactions(props) {
 
 const msp = state => {
     return {
-       transactions: state.transactions
+       transactions: state.transactions,
+       id: state.user.id
     }
 }
 
-export default connect(msp)(Transactions)
+const mdp = dispatch => {
+    return {
+        getTransactions: id=> dispatch(getTransactionsActionCreator(id))
+    }
+}
+
+export default connect(msp, mdp)(Transactions)

@@ -8,7 +8,7 @@ import {getPortfolioActionCreator, getTransactionsActionCreator} from '../action
 
 class UserContainer extends React.Component {  
 
-    componentDidMount() {
+    componentDidUpdate() {
 
         // Load user's portfolio
         this.props.getPortfolio(this.props.id)

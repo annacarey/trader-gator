@@ -31,8 +31,10 @@ function Portfolio(props) {
 const msp = state => {
     return {
        portfolio: state.portfolio,
-       balance: state.user.accountBalance
+       balance: state.user.accountBalance,
+       id: state.user.id
     }
 }
+
 
 export default connect(msp)(Portfolio)

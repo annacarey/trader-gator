@@ -10,6 +10,7 @@ function Purchase(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.purchase(ticker, quantity, props.id)
+        .then(() => props.updatePortfolio())
     }
 
     return (

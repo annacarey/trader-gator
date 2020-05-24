@@ -32,6 +32,7 @@ const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
     }).then((response) => response.json())
       .then(response => {
         console.log(response)
+        // if response.error show the error to the user else do the below
         const transaction = 
             {stockName: response.transaction.stock_name, 
             tickerSymbol: response.transaction.ticker_symbol,
