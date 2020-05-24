@@ -6,6 +6,7 @@ function Transactions(props) {
 
     return (
         <div>Transaction
+            
         </div>
     )
 }
