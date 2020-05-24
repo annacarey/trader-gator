@@ -37,6 +37,7 @@ class Signup extends React.Component {
                     <input onChange={e => this.setState({passwordConfirmation: e.target.value})} type="password" name="password" placeholder="Confirm password..." />
                     <input type="submit" value="Signup" />
                 </form>
+                {this.props.error !== "" && <p>{this.props.error}</p>}
                 <p>Already have an account? <Link to='/login' exact>Log in here</Link></p>
             </div>
         )
@@ -52,7 +53,8 @@ const mdp = dispatch => {
 const msp = state => {
     console.log(state)
     return {
-        user: state.user
+        user: state.user,
+        error: state.error
     }
 }
 

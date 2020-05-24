@@ -11,13 +11,22 @@ const signupUserActionCreator = userInfo => dispatch => {
         body: JSON.stringify({user: userInfo})
     }).then((response) => response.json())
       .then(response => {
-        dispatch(signupUser(response))
+          if (response.error) {
+            dispatch(signupUserFailed(response.error))
+          } else {
+            dispatch(signupUser(response))
+          }
       })
 }
 
 const signupUser = user => ({
     type: 'SIGNUP_USER', 
     payload: {user}
+})
+
+const signupUserFailed = error => ({
+    type: 'SIGNUP_USER_FAILED',
+    payload: {error}
 })
 
 // Log in user
