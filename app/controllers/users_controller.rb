@@ -7,7 +7,8 @@ class UsersController < ApplicationController
             render json: user
         else 
             errors = user.errors.full_messages
-            render json: {error: errors}
+            parsed_errors = errors.join(", ")
+            render json: {error: "Signup errors: " + parsed_errors}
         end
     end 
     

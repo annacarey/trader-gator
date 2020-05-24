@@ -19,8 +19,8 @@ class Signup extends React.Component {
         // Signup fetch call to backend (via redux)
         this.props.signup(this.state)
 
-        // Push to portfolio page
-        .then(() => this.props.history.push('/portfolio'))
+        // Push to portfolio page if no errors
+        .then(() => this.props.errors === "" && this.props.history.push('/portfolio'))
         
     }
 
@@ -51,7 +51,6 @@ const mdp = dispatch => {
 }
 
 const msp = state => {
-    console.log(state)
     return {
         user: state.user,
         error: state.error
