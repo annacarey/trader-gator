@@ -1,11 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Navigation from '../components/Navigation'
 
 function Transactions(props) {  
     console.log(props.transactions)
 
     return (
-        <div>Transaction List
+        <div> 
+            <Navigation />
+            <h1>Transactions</h1>
             <table>
                 <tr>
                     <th>Symbol</th>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 import {signupUserActionCreator} from '../actionCreators'
 
 class Signup extends React.Component {  
@@ -19,6 +20,8 @@ class Signup extends React.Component {
         this.props.signup(this.state)
 
         // Push to portfolio page
+        .then(() => this.props.history.push('/portfolio'))
+        
     }
 
     render () {
@@ -52,4 +55,4 @@ const msp = state => {
     }
 }
 
-export default connect(msp, mdp)(Signup)
+export default withRouter(connect(msp, mdp)(Signup))
