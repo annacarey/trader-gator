@@ -7,11 +7,10 @@ function UserLogin(props) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    console.log("email pass", email, password)
 
     const handleSubmit = e => {
         e.preventDefault()
-        props.login(email, password).then(() => props.history.push('/portfolio'))
+        props.login(email, password).then(() => props.error !== "" && props.history.push('/portfolio'))
     }
 
     return (
@@ -23,6 +22,7 @@ function UserLogin(props) {
                 <br />
                 <input type="submit" value="Login"></input>
             </form>
+            {props.error !== "" && <p>{props.error}</p>}
             <Link to='/' exact>Go back</Link>
             
         </div>
@@ -31,7 +31,7 @@ function UserLogin(props) {
 
 const msp = state => {
     return {
-       user: state.user
+       error: state.error
     }
 }
 

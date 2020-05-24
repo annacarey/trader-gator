@@ -11,7 +11,6 @@ const signupUserActionCreator = userInfo => dispatch => {
         body: JSON.stringify({user: userInfo})
     }).then((response) => response.json())
       .then(response => {
-        console.log('signup user', response)
         dispatch(signupUser(response))
       })
 }
@@ -31,14 +30,22 @@ const loginUserActionCreator = (email, password) => dispatch => {
         body: JSON.stringify({email, password})
     }).then(response => response.json())
     .then(response => {
-        console.log(response)
-        dispatch(loginUser(response.user))
+        if (response.error) {
+            dispatch(loginUserError(response.error))
+        } else {
+            dispatch(loginUser(response.user))
+        }
     })
 }
 
 const loginUser = user => ({
     type: 'LOGIN_USER',
     payload: {user}
+})
+
+const loginUserError = error => ({
+    type: 'LOGIN_USER_ERROR',
+    payload: {error}
 })
 
 // Purchase shares of a stock
