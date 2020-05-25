@@ -1,11 +1,5 @@
 class TransactionsController < ApplicationController
 
-    def user_transactions
-        user = User.find(params[:id])
-        transactions = user.transactions
-        render json: transactions
-    end
-
     def create 
 
         # Authentication of IEX client library - possibly move into initializer

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Portfolio from '../components/Portfolio'
 import Purchase from '../components/Purchase'
 import Navigation from '../components/Navigation'
 import {getPortfolioActionCreator} from '../actionCreators'
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 
+function PortfolioContainer(props) {
 
-function PortfolioContainer(props) {  
+    useEffect(() => {
+        props.id!==""? props.getPortfolio(props.id) : props.history.push('/')
+    }, []);
 
     const updatePortfolio = () => {
         props.getPortfolio(props.id)
@@ -34,4 +38,4 @@ const mdp = dispatch => {
 }
 
 
-export default connect(msp, mdp)(PortfolioContainer)
+export default withRouter(connect(msp, mdp)(PortfolioContainer))

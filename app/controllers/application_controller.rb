@@ -1,28 +1,19 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
 
-    include ::ActionController::Cookies
+    protect_from_forgery with: :exception
 
-    # skip_before_action :verify_authenticity_token
+    skip_before_action :verify_authenticity_token
 
-    def encode_token(id)
-        JWT.encode({user_id: id}, ENV["JWT_SECRET"])
-    end 
-
-    def get_auth_header
-        request.headers["Authorization"]
+    def authenticate_user
+        logged_in?
     end
 
-    def decoded_token
-        begin 
-            JWT.decode(get_auth_header, ENV["JWT_SECRET"])[0]["user_id"]
-        rescue 
-            nil
-        end
+    def current_user
+        User.find(session[:user_id]) if session[:user_id]
     end 
 
-
-    def session_user
-        User.find(decoded_token)
+    def logged_in?
+        current_user != nil
     end
-
+    
 end

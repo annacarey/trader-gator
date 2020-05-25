@@ -1,11 +1,15 @@
 class AuthController < ApplicationController
 
-    def create 
+    def login 
         user = User.find_by(email: params[:email])
-        
         if user && user.authenticate(params[:password])
-            create_jwt = encode_token(user.id)
-            cookies.signed[:jwt] = {value: create_jwt, httponly: true, expires: 1.hour.from_now}
+            session[:user_id] = user.id
+            response.set_cookie(:session, {
+                value: session.id,
+                expires: 1.hour.from_now,
+                path: '/api',
+                httponly: true
+            })
             render json: {message: "Logged in", user: user}
         else 
             render json: {
@@ -13,4 +17,6 @@ class AuthController < ApplicationController
             }
         end
     end
+
+
 end

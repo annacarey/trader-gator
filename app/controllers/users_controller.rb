@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+    before_action :authenticate_user, except: [:signup]
+
     def signup
         user = User.new(user_params)
         if user.save
@@ -21,6 +23,12 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         render json: user.portfolio
     end 
+
+    def transactions
+        user = User.find(params[:id])
+        transactions = user.transactions
+        render json: transactions
+    end
 
     private
 

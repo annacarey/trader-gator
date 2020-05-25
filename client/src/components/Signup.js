@@ -20,7 +20,7 @@ class Signup extends React.Component {
         this.props.signup(this.state)
 
         // Push to portfolio page if no errors
-        .then(() => this.props.errors === "" && this.props.history.push('/portfolio'))
+        .then(() => this.props.error === "" && this.props.history.push('/portfolio'))
         
     }
 

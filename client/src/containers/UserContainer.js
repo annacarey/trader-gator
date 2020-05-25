@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Signup from '../components/Signup'
 import PortfolioContainer from './PortfolioContainer'
@@ -9,15 +9,30 @@ import {getPortfolioActionCreator, getTransactionsActionCreator} from '../action
 
 class UserContainer extends React.Component {  
 
-    componentDidUpdate() {
-
-        // Load user's portfolio
-        this.props.getPortfolio(this.props.id)
-
-        // Load user's transactions
-        this.props.getTransactions(this.props.id)
+    // componentDidMount() {
         
-    }
+    //     if (this.props.id !== "") {
+    //         // Load user's portfolio
+    //         this.props.getPortfolio(this.props.id)
+
+    //         // Load user's transactions
+    //         this.props.getTransactions(this.props.id)
+    //     } else {
+
+    //     }
+    // }
+
+    // componentDidUpdate(prevProps) {
+
+    //     if (this.props.id !== prevProps.id) {
+    //         // Load user's portfolio
+    //         this.props.getPortfolio(this.props.id)
+
+    //         // Load user's transactions
+    //         this.props.getTransactions(this.props.id)
+    //     }
+        
+    // }
 
     render() {
         return (
@@ -46,5 +61,4 @@ const mdp = dispatch => {
     }
 }
 
-export default connect(msp, mdp)(UserContainer)
-
+export default withRouter(connect(msp, mdp)(UserContainer))

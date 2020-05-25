@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Navigation from '../components/Navigation'
+import {withRouter} from "react-router-dom";
 import {getTransactionsActionCreator} from '../actionCreators'
 
 function Transactions(props) {  
-    console.log(props.transactions)
 
     useEffect(() => {
-        props.getTransactions(props.id)
+        props.id!==""? props.getTransactions(props.id) : props.history.push('/')
     }, []);
 
     return (
@@ -51,4 +51,4 @@ const mdp = dispatch => {
     }
 }
 
-export default connect(msp, mdp)(Transactions)
+export default withRouter(connect(msp, mdp)(Transactions))

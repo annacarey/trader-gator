@@ -4,14 +4,13 @@ Rails.application.routes.draw do
   scope '/api' do
     # Placeholder routes for deletion
     get '/users', to: 'users#index'
-    get '/transactions', to: 'transactions#index'
     
     # Real routes
     post '/signup', to: 'users#signup'
     post '/purchase', to: 'transactions#create'
     get '/:id/portfolio', to: 'users#portfolio'
-    get '/:id/transactions', to: 'transactions#user_transactions'
-    post '/login', to: 'auth#create'
+    get '/:id/transactions', to: 'users#transactions'
+    post '/login', to: 'auth#login'
 
   end
 

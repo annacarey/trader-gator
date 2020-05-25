@@ -1,5 +1,4 @@
 // Imports package to parse the date for transactions
-import Moment from 'react-moment';
 import moment from 'moment'
 
 // Signup a new user
@@ -8,6 +7,7 @@ const signupUserActionCreator = userInfo => dispatch => {
         method: "POST",
         headers: {'content-type': 'application/json',
             'accept': 'application/json'},
+        credentials: 'include',
         body: JSON.stringify({user: userInfo})
     }).then((response) => response.json())
       .then(response => {
@@ -87,7 +87,6 @@ const purchaseStock = transaction => ({
 
 // Load user's portfolio
 const getPortfolioActionCreator = userId => dispatch => {
-    console.log("in portfolio action creator")
     return fetch(`/api/${userId}/portfolio`)
     .then(response => response.json())
     .then(portfolioArray => {
