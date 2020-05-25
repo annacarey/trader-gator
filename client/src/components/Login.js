@@ -11,9 +11,8 @@ function UserLogin(props) {
     const handleSubmit = e => {
         e.preventDefault()
         props.login(email, password).then(() => {
-            console.log(props.error==="")
             props.error === "" && props.history.push('/portfolio')})
-    }
+        }
 
     return (
         <div>

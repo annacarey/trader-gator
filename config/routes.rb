@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/:id/portfolio', to: 'users#portfolio'
     get '/:id/transactions', to: 'users#transactions'
     post '/login', to: 'auth#login'
+    get '/auto_login', to: 'auth#auto_login'
 
   end
 

@@ -18,5 +18,12 @@ class AuthController < ApplicationController
         end
     end
 
+    def auto_login
+        if logged_in?
+            render json: {user: current_user}
+        else 
+            render json: {error: "No user found."}
+        end 
+    end 
 
 end

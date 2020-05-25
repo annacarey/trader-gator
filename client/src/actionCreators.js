@@ -125,4 +125,4 @@ const getTransactions = transactions => ({
 })
 
 
-export {signupUserActionCreator, loginUserActionCreator, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}
+export {signupUserActionCreator, loginUserActionCreator, loginUser, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}
