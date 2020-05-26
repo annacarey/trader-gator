@@ -16,7 +16,7 @@ function Portfolio(props) {
 
     return (
         <Wrapper>
-            {/* Make sure account balance updates in addition to portfolio} */}
+            <p>{props.loading && "Loading..."}</p>
             <Balance>Current Balance: <strong>{props.balance}</strong></Balance>
             <Table>
                 <TRHeader>
@@ -25,7 +25,6 @@ function Portfolio(props) {
                     <TH># Shares</TH>
                 </TRHeader>
                 {props.portfolio.map(portfolio => {
-                    // Need to add in grey color if status is 'equal'
                     return <TR key={portfolio.ticker_symbol}>
                         <TD status={getTickerColor(portfolio.day_status)}>
                             {portfolio.ticker_symbol}
@@ -42,11 +41,11 @@ function Portfolio(props) {
 }
 
 const msp = state => {
-    console.log('in portfolio msp', state)
     return {
        portfolio: state.portfolio,
        balance: state.user.accountBalance,
-       id: state.user.id
+       id: state.user.id,
+       loading: state.loading
     }
 }
 

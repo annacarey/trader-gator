@@ -3,6 +3,7 @@ import moment from 'moment'
 
 // Signup a new user
 const signupUserActionCreator = userInfo => dispatch => {
+    dispatch(loading())
     return fetch('/api/signup', {
         method: "POST",
         headers: {'content-type': 'application/json',
@@ -31,6 +32,7 @@ const signupUserFailed = error => ({
 
 // Log in user
 const loginUserActionCreator = (email, password) => dispatch => {
+    dispatch(loading())
     return fetch('/api/login', {
         method: 'POST',
         headers: {'content-type': 'application/json',
@@ -59,6 +61,7 @@ const loginUserError = error => ({
 
 // Purchase shares of a stock
 const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
+    dispatch(loading())
     return fetch('/api/purchase', {
         method: "POST",
         headers: {'content-type': 'application/json',
@@ -87,6 +90,7 @@ const purchaseStockFailed = error => ({
 
 // Load user's portfolio
 const getPortfolioActionCreator = userId => dispatch => {
+    dispatch(loading())
     return fetch(`/api/${userId}/portfolio`)
     .then(response => response.json())
     .then(portfolioArray => {
@@ -101,6 +105,7 @@ const getPortfolio = portfolio => ({
 
 // Load user's transactions
 const getTransactionsActionCreator = userId => dispatch => {
+    dispatch(loading())
     return fetch(`/api/${userId}/transactions`)
     .then(response => response.json())
     .then(transactionsResponse => {
@@ -135,6 +140,11 @@ const logoutActionCreator = () => dispatch => {
 
 const logout = () =>({
     type: 'LOGOUT_USER'
+})
+
+// Loading function
+const loading = () => ({
+    type: 'LOADING'
 })
 
 

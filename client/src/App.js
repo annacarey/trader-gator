@@ -4,6 +4,7 @@ import UserContainer from './containers/UserContainer'
 import {connect} from 'react-redux';
 import {loginUser} from './actionCreators'
 import {withRouter} from "react-router-dom";
+import styled from 'styled-components'
 
 class App extends Component {
 
@@ -24,9 +25,9 @@ class App extends Component {
 
   render() {
     return (
-      <div >
+      <Wrapper>
         <UserContainer/>
-      </div>
+      </Wrapper>
     )
   } 
 }
@@ -38,3 +39,8 @@ const mdp = dispatch => {
 }
 
 export default withRouter(connect(null, mdp)(App))
+
+const Wrapper = styled.div`
+  width 100vw;
+  height: 100vh;
+`

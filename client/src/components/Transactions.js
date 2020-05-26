@@ -14,7 +14,8 @@ function Transactions(props) {
     return (
         <div> 
             <Navigation portfolio={false} />
-            <Wrapper>
+            <Wrapper cursor={props.loading? "wait" : "auto"}>
+                <p>{props.loading && "Loading..."}</p>
                 <Table>
                     <TRHeader>
                         <TH colSpan={2}>Company</TH>
@@ -42,7 +43,8 @@ function Transactions(props) {
 const msp = state => {
     return {
        transactions: state.transactions,
-       id: state.user.id
+       id: state.user.id,
+       loading: state.loading
     }
 }
 
@@ -61,6 +63,7 @@ const Wrapper = styled.div`
     width: 60%;
     align-items: center;
     width: 100%;
+    cursor: ${props => props.cursor};
 `
 
 const Balance = styled.h3`

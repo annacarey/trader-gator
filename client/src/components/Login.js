@@ -17,7 +17,7 @@ function UserLogin(props) {
         }
 
     return (
-        <Wrapper>
+        <Wrapper cursor={props.loading? "wait" : "auto"}>
             <Form onSubmit = {handleSubmit}>
                 <Input placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" name="email" value={email} ></Input>
                 <br />
@@ -34,7 +34,8 @@ function UserLogin(props) {
 
 const msp = state => {
     return {
-       error: state.error
+       error: state.error,
+       loading: state.loading
     }
 }
 
@@ -53,6 +54,7 @@ const Wrapper = styled.section`
     justify-content: center;
     height: 100vh;
     background-color: #F3F3F3;
+    cursor: ${props => props.cursor};
 `
 
 const Form = styled.form`

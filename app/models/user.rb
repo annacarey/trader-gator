@@ -30,17 +30,24 @@ class User < ApplicationRecord
             
             # Official open price is available is 9:45am ET or later, so if you access earlier than this, set open_price variable to the previous close price (should set status to equal and appear grey on frontend)
             begin
-                open_price = ohlc.open.price
+                open_price = ohlc.open.price unless open_price=nil
             rescue
                 open_price = client.price(stock[:ticker_symbol])
+            else 
+                open_price = client.price(stock[:ticker_symbol])
             end
-            if client.price(stock[:ticker_symbol]) < open_price # set day_status attribute as lower if current price is lower than current open price
-                day_status = "lower"
-            elsif client.price(stock[:ticker_symbol]) > open_price # set day_status attribute as higher if current price is higher than open price
-                day_status = "higher"
-            else # set day_status attribute as equal if current price is equal to open price
-                day_status = "equal"
-            end 
+            
+            begin 
+                if client.price(stock[:ticker_symbol]) < open_price # set day_status attribute as lower if current price is lower than current open price
+                    day_status = "lower"
+                elsif client.price(stock[:ticker_symbol]) > open_price # set day_status attribute as higher if current price is higher than open price
+                    day_status = "higher"
+                else # set day_status attribute as equal if current price is equal to open price
+                    day_status = "equal"
+                end 
+            rescue 
+                day_state = "equal"
+            end
             stock.merge!({"day_status": day_status})
         end
 

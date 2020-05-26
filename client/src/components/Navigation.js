@@ -10,7 +10,6 @@ function Navigation(props) {
         props.logout().then(() => props.history.push('/'))
     }
 
-    console.log(props.page)
     return (
         <Wrapper>
             <Option style={{borderLeft: '1px solid black'}} selected={props.portfolio? "#007EA7" : "white"}><MenuLink selected={props.portfolio? "#ffffff" : "black"}  to="/portfolio" exact>Portfolio</MenuLink></Option>

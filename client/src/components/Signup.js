@@ -26,9 +26,8 @@ class Signup extends React.Component {
     }
 
     render () {
-        console.log(this.props.user)
         return (
-            <Wrapper>
+            <Wrapper cursor={this.props.loading? "wait" : "auto"}>
                 <Welcome>Trader Gator</Welcome>
                 <P>The ultimate stock trading application</P>
                 <Form onSubmit = {this.handleSubmit}>
@@ -55,7 +54,8 @@ const mdp = dispatch => {
 const msp = state => {
     return {
         user: state.user,
-        error: state.error
+        error: state.error,
+        loading: state.loading
     }
 }
 
@@ -68,6 +68,7 @@ const Wrapper = styled.div`
     justify-content: center;
     height: 100vh;
     background-color: #F3F3F3;
+    cursor: ${props => props.cursor};
 `
 
 const Welcome = styled.h1`

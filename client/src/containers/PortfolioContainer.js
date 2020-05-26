@@ -18,13 +18,13 @@ function PortfolioContainer(props) {
     }
 
     return (
-        <div>
+        <Wrapper cursor={props.loading? "wait" : "auto"}>
             <Navigation portfolio={true} />
-            <Wrapper>
+            <PortfolioWrapper>
                 <Portfolio />
                 <Purchase updatePortfolio={updatePortfolio} />
-            </Wrapper>
-        </div>
+            </PortfolioWrapper>
+        </Wrapper>
     )
 }
 
@@ -32,7 +32,8 @@ const msp = state => {
     return {
        id: state.user.id,
        user: state.user,
-       transactions: state.transactions
+       transactions: state.transactions,
+       loading: state.loading
     }
 }
 
@@ -46,6 +47,10 @@ const mdp = dispatch => {
 export default withRouter(connect(msp, mdp)(PortfolioContainer))
 
 const Wrapper = styled.div`
+   height: 100%;
+   cursor: ${props => props.cursor};
+`
+
+const PortfolioWrapper = styled.div`
     display: flex;
-    
 `
