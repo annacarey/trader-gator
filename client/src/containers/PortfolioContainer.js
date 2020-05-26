@@ -8,7 +8,6 @@ import {withRouter} from "react-router-dom";
 
 function PortfolioContainer(props) {
 
-    console.log(props)
     useEffect(() => {
         props.id!==""? props.getPortfolio(props.id) : props.history.push('/')
     }, []);

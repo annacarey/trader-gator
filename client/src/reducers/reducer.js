@@ -17,15 +17,17 @@ function reducer(state = initialState, action) {
         case 'SIGNUP_USER':
             return {...state, error: "", user: {id: action.payload.user.id, firstName: action.payload.user.first_name, lastName: action.payload.user.last_name, email: action.payload.user.email, accountBalance: action.payload.user.account_balance}}
         case 'SIGNUP_USER_FAILED':
-            return {...state, error: action.payload.error}
+            return {...state, error: action.payload}
         case 'LOGIN_USER':
             return {...state, error: "", user: {id: action.payload.user.id, firstName: action.payload.user.first_name, lastName: action.payload.user.last_name, email: action.payload.user.email, accountBalance: action.payload.user.account_balance}}
         case 'LOGIN_USER_ERROR':
-            return {...state, error: action.payload.error}
+            return {...state, error: action.payload}
         case 'LOGOUT_USER':
             return initialState
         case 'PURCHASE_STOCK':
-            return {...state, user: {...state.user, accountBalance: action.payload.balance}}
+            return {...state, error: "", user: {...state.user, accountBalance: action.payload.balance}}
+        case 'PURCHASE_STOCK_FAILED':
+            return {...state, error: action.payload}
         case 'GET_PORTFOLIO':
             return {...state, portfolio: action.payload.portfolio}
         case 'GET_TRANSACTIONS':

@@ -26,7 +26,7 @@ const signupUser = user => ({
 
 const signupUserFailed = error => ({
     type: 'SIGNUP_USER_FAILED',
-    payload: {error}
+    payload: error
 })
 
 // Log in user
@@ -54,12 +54,11 @@ const loginUser = user => ({
 
 const loginUserError = error => ({
     type: 'LOGIN_USER_ERROR',
-    payload: {error}
+    payload: error
 })
 
 // Purchase shares of a stock
 const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
-    console.log("user id", userId)
     return fetch('/api/purchase', {
         method: "POST",
         headers: {'content-type': 'application/json',
@@ -68,21 +67,22 @@ const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
     }).then((response) => response.json())
       .then(response => {
         console.log(response)
-        // if response.error show the error to the user else do the below
-        const transaction = 
-            {stockName: response.transaction.stock_name, 
-            tickerSymbol: response.transaction.ticker_symbol,
-            quantity: response.transaction.quantity,
-            currentPrice: response.transaction.current_price_per_share,
-            totalPrice: response.transaction.total_price
-            }
-        dispatch(purchaseStock(transaction, response.balance))
+        if (response.error) {
+            dispatch(purchaseStockFailed(response.error))
+        } else {
+            dispatch(purchaseStock(response.balance))
+        }      
       })
 }
 
-const purchaseStock = (transaction, balance) => ({
+const purchaseStock = balance => ({
     type: 'PURCHASE_STOCK', 
-    payload: {transaction, balance}
+    payload: {balance}
+})
+
+const purchaseStockFailed = error => ({
+    type: 'PURCHASE_STOCK_FAILED',
+    payload: error
 })
 
 // Load user's portfolio

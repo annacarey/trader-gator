@@ -20,13 +20,15 @@ function Purchase(props) {
                 <input onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="0" name="ticker" placeholder="Number of shares..." />
                 <input type="submit" value="Submit" />
             </form>
+            {props.error!=="" && <p>{props.error}</p>}
         </div>
     )
 }
 
 const msp = state => {
     return {
-       id: state.user.id
+       id: state.user.id,
+       error: state.error
     }
 }
 
