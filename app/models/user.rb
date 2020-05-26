@@ -15,12 +15,8 @@ class User < ApplicationRecord
         quantity_of_stocks_array = self.transactions.group_by{|transaction| transaction.ticker_symbol}.values.map{|transactions| [transactions[0].slice(:ticker_symbol, :stock_name), transactions.map{|transaction| transaction.quantity }.reduce(:+)]}
         quantity_of_stocks_hash = quantity_of_stocks_array.map{|item| item[0].merge!({"quantity": item[1]})}
 
-        client = IEX::Api::Client.new(
-            publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
-            secret_token: ENV['IEX_API_SECRET_TOKEN'],
-            endpoint: 'https://sandbox.iexapis.com/stable'
-            )
-        
+        client = IexClientWrapperController.new.client
+
         # Add the total current value of the shares based on current stock price
         stocks_quantity_current_total_value = quantity_of_stocks_hash.map{|stock| stock.merge!({"total_value": (client.price(stock[:ticker_symbol]) * stock[:quantity])})}
     
@@ -50,7 +46,6 @@ class User < ApplicationRecord
             end
             stock.merge!({"day_status": day_status})
         end
-
     end
 end
 

@@ -3,11 +3,7 @@ class TransactionsController < ApplicationController
     def create 
 
         # Authentication of IEX client library - possibly move into initializer
-        client = IEX::Api::Client.new(
-            publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
-            secret_token: ENV['IEX_API_SECRET_TOKEN'],
-            endpoint: 'https://sandbox.iexapis.com/stable'
-            )
+        client = IexClientWrapperController.new.client
 
         # Set the transaction variables from params
         user_id = params[:id]
