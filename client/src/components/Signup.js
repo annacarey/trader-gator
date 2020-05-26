@@ -29,6 +29,8 @@ class Signup extends React.Component {
         console.log(this.props.user)
         return (
             <Wrapper>
+                <Welcome>Trader Gator</Welcome>
+                <P>The ultimate stock trading application</P>
                 <Form onSubmit = {this.handleSubmit}>
                     <Input onChange={e => this.setState({firstName: e.target.value})} type="text" name="firstName" placeholder="First name..." />
                     <Input onChange={e => this.setState({lastName: e.target.value})} type="text" name="lastName" placeholder="Last name..." />
@@ -66,6 +68,14 @@ const Wrapper = styled.div`
     justify-content: center;
     height: 100vh;
     background-color: #F3F3F3;
+`
+
+const Welcome = styled.h1`
+`
+
+const P = styled.p`
+    margin-top: 0;
+    margin-bottom: 5%;
 `
 
 const Input = styled.input`
