@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 function Portfolio(props) {  
 
+    // Calculate color of ticker text based on the status attribute of the stock
     const getTickerColor = status => {
         if (status === "higher") {
             return 'green'
@@ -25,6 +26,8 @@ function Portfolio(props) {
                         <TH>Current Value</TH>
                         <TH># Shares</TH>
                     </TRHeader>
+
+                    {/* For each stock object in portfolio array, render a row in the table */}
                     {props.portfolio.map(portfolio => {
                         return <TR key={portfolio.ticker_symbol}>
                             <TD status={getTickerColor(portfolio.day_status)}>
@@ -35,6 +38,7 @@ function Portfolio(props) {
                             <TD>{portfolio.quantity}</TD>
                         </TR>
                     })}
+
                 </tbody>
             </Table>
         </Wrapper>

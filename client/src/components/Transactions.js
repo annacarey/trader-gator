@@ -8,6 +8,7 @@ import styled from 'styled-components'
 function Transactions(props) {  
 
     useEffect(() => {
+        // Load transactions; if no user is logged in, push to homepage signup
         props.id!==""? props.getTransactions(props.id) : props.history.push('/')
     }, []);
 

@@ -69,7 +69,6 @@ const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
         body: JSON.stringify({ticker, quantity, id: userId})
     }).then((response) => response.json())
       .then(response => {
-        console.log(response)
         if (response.error) {
             dispatch(purchaseStockFailed(response.error))
         } else {
@@ -109,8 +108,6 @@ const getTransactionsActionCreator = userId => dispatch => {
     return fetch(`/api/${userId}/transactions`)
     .then(response => response.json())
     .then(transactionsResponse => {
-        console.log(transactionsResponse)
-        // Make sure transactions are sorted by date in descending order (most recent is first)
         const transactions = transactionsResponse.map(transactionResponse => {
             return {
                 tickerSymbol: transactionResponse.ticker_symbol,
@@ -142,7 +139,7 @@ const logout = () =>({
     type: 'LOGOUT_USER'
 })
 
-// Loading function
+// Loading function for any fetch call
 const loading = () => ({
     type: 'LOADING'
 })

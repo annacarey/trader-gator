@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 function Navigation(props) {  
 
+    // Log the user out and push to signup homepage
     const handleClick = () => {
         props.logout().then(() => props.history.push('/'))
     }

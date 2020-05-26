@@ -10,6 +10,7 @@ import styled from 'styled-components'
 function PortfolioContainer(props) {
 
     useEffect(() => {
+        // Load the portfolio; if no user logged in, push to homepage signup
         props.id!==""? props.getPortfolio(props.id) : props.history.push('/')
     }, []);
 

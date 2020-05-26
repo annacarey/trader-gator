@@ -10,6 +10,8 @@ function UserLogin(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    // Log the user in with form input email and password unless there is an error
+    // Successful log in pushes to /portfolio route
     const handleSubmit = e => {
         e.preventDefault()
         props.login(email, password).then(() => {
@@ -17,7 +19,7 @@ function UserLogin(props) {
         }
 
     return (
-        <Wrapper cursor={props.loading? "wait" : "auto"}>
+        <Wrapper cursor={props.loading? "wait" : "auto"}> 
             <Form onSubmit = {handleSubmit}>
                 <Input placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" name="email" value={email} ></Input>
                 <br />

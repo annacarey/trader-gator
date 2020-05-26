@@ -8,6 +8,8 @@ function Purchase(props) {
     const [ticker, setTicker] = useState("");
     const [quantity, setQuantity] = useState("");
 
+    // Create a new transaction with the purchase button
+    // Update the portfolio if successful
     const handleSubmit = e => {
         e.preventDefault()
         props.purchase(ticker, quantity, props.id)
@@ -20,7 +22,7 @@ function Purchase(props) {
             <Form onSubmit={handleSubmit}>
                 <Input onChange={e => setTicker(e.target.value)} value={ticker} type="text" name="ticker" placeholder="Ticker symbol..." />
                 <InputQuantity onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="1" name="ticker" placeholder="# of shares..." />
-                <Submit type="submit" value="Submit" />
+                <Submit type="submit" value="Purchase" />
             </Form>
             {props.error!=="" && <p>{props.error}</p>}
         </Wrapper>
