@@ -9,7 +9,8 @@ const initialState = {
     error: "",
     loading: false,
     transactions: [],
-    portfolio: []
+    portfolio: [],
+    portfolioValue: 0
 }
 
 function reducer(state = initialState, action) {
@@ -30,7 +31,7 @@ function reducer(state = initialState, action) {
         case 'PURCHASE_STOCK_FAILED':
             return {...state, error: action.payload}
         case 'GET_PORTFOLIO':
-            return {...state, loading: false, portfolio: action.payload.portfolio}
+            return {...state, loading: false, portfolioValue: action.payload.portfolioValue, portfolio: action.payload.portfolio}
         case 'GET_TRANSACTIONS':
             return {...state, loading: false, transactions: action.payload.transactions}
         case 'LOADING':

@@ -93,14 +93,14 @@ const getPortfolioActionCreator = userId => dispatch => {
     dispatch(loading())
     return fetch(`/api/${userId}/portfolio`)
     .then(response => response.json())
-    .then(portfolioArray => {
-        dispatch(getPortfolio(portfolioArray))
+    .then(response => {
+        dispatch(getPortfolio(response.portfolio, response.portfolio_value))
     });
 }
 
-const getPortfolio = portfolio => ({
+const getPortfolio = (portfolio, portfolioValue) => ({
     type: 'GET_PORTFOLIO',
-    payload: {portfolio}
+    payload: {portfolio, portfolioValue}
 })
 
 // Load user's transactions

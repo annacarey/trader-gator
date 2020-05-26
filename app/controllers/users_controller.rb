@@ -21,7 +21,14 @@ class UsersController < ApplicationController
 
     def portfolio
         user = User.find(params[:id])
-        render json: user.portfolio
+
+        # Get the portfolio (array of stocks owned)
+        portfolio = user.portfolio
+
+        # Get the current value of the portfolio
+        portfolio_value = user.total_portfolio_value(portfolio) # Total current value of stocks owned (current price * quantity of shares, sum for all stocks)
+
+        render json: {portfolio: portfolio, portfolio_value: portfolio_value}
     end 
 
     def transactions

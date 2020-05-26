@@ -22,6 +22,11 @@ class User < ApplicationRecord
         add_day_open_info_to_stock_hash(stocks_array, client)
     end
 
+    # Calculate the total value of current stock owned and increment user's account_balance
+    def total_portfolio_value(portfolio)
+        portfolio.map{|stock| stock[:total_value]}.reduce(:+)
+    end
+
     # Group the transactions by company in a hash where the key is the company ticker symbol, add the number of shares owned for each stock (if there are multiple transactions for a stock), transform into an array of hashes 
     # Return value is a hash where each hash is a stock with keys: ticker_symbol, company_name, quantity (# of shares)
     def transactions_grouped_by_company
