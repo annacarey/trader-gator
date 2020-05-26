@@ -47,7 +47,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    padding-top: 80px;
+    padding-top: 55px;
     width: 40%;
     justify-content: center;
     align-items: center;
@@ -56,6 +56,7 @@ const Wrapper = styled.div`
 const Balance = styled.h3`
     font-size: 20px;
     align-self: center;
+    margin-top: 0px;
 `
 
 const Form = styled.form`
