@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Link} from "react-router-dom";
 import {loginUserActionCreator} from '../actionCreators'
+import styled from 'styled-components'
+
 
 function UserLogin(props) {
 
@@ -15,18 +17,18 @@ function UserLogin(props) {
         }
 
     return (
-        <div>
-            <form onSubmit = {handleSubmit}>
-                <input placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" name="email" value={email} ></input>
+        <Wrapper>
+            <Form onSubmit = {handleSubmit}>
+                <Input placeholder="Email" onChange={e => setEmail(e.target.value)} type="text" name="email" value={email} ></Input>
                 <br />
-                <input placeholder="Password" onChange={e => setPassword(e.target.value)} type="password" name="password" value={password} ></input>
+                <Input placeholder="Password" onChange={e => setPassword(e.target.value)} type="password" name="password" value={password} ></Input>
                 <br />
-                <input type="submit" value="Login"></input>
-            </form>
+                <Submit type="submit" value="Login"></Submit>
+            </Form>
             {props.error !== "" && <p>{props.error}</p>}
             <Link to='/' exact>Go back</Link>
             
-        </div>
+        </Wrapper>
     )
 }
 
@@ -44,3 +46,42 @@ const mdp = dispatch => {
 
 export default  withRouter(connect(msp, mdp)(UserLogin))
 
+const Wrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #F3F3F3;
+`
+
+const Form = styled.form`
+    width: 200px;
+`
+
+const Input = styled.input`
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 12px;
+    margin: 10px 10px 10px 0px;
+    &:focus {
+        outline: none;
+    }
+`
+
+const Submit = styled.input`
+    width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 12px;
+    margin: 10px 10px 10px 0px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+`
