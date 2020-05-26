@@ -27,9 +27,16 @@ class User < ApplicationRecord
         # Add whether or not it is up from the day open
         stocks_quantity_total_up_down = stocks_quantity_current_total_value.map do |stock| 
             ohlc = client.ohlc(stock[:ticker_symbol]) # Gets the open, high, low, close for a given stock. See ruby client documentation for more info: https://github.com/dblock/iex-ruby-client#get-a-ohlc-open-high-low-close-price
-            if client.price(stock[:ticker_symbol]) < ohlc.open.price # set day_status attribute as lower if current price is lower than current open price
+            
+            # Official open price is available is 9:45am ET or later, so if you access earlier than this, set open_price variable to the previous close price (should set status to equal and appear grey on frontend)
+            begin
+                open_price = ohlc.open.price
+            rescue
+                open_price = client.price(stock[:ticker_symbol])
+            end
+            if client.price(stock[:ticker_symbol]) < open_price # set day_status attribute as lower if current price is lower than current open price
                 day_status = "lower"
-            elsif client.price(stock[:ticker_symbol]) > ohlc.open.price # set day_status attribute as higher if current price is higher than open price
+            elsif client.price(stock[:ticker_symbol]) > open_price # set day_status attribute as higher if current price is higher than open price
                 day_status = "higher"
             else # set day_status attribute as equal if current price is equal to open price
                 day_status = "equal"
