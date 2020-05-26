@@ -1,11 +1,11 @@
 # Trader Gator
 
 Trader Gator is a simple stock trading application that initializes you with $5,000, allows you to purchase stocks at their current price, view your portfolio and its performance, and explore your transaction history.
-The application is built with a [React](https://reactjs.org/) frontend and [Ruby on Rails](http://rubyonrails.org) for the API. The application uses live stock data from [IEX Cloud] (https://iexcloud.io/). You can find the hosted application on heroku here: 
+The application is built with a [React](https://reactjs.org/) frontend and [Ruby on Rails](http://rubyonrails.org) for the API. The application uses live stock data from [IEX Cloud](https://iexcloud.io/). You can find the hosted application on heroku here: 
 
 ## Running Locally
 
-Make sure you have [Ruby](https://www.ruby-lang.org), [Bundler](http://bundler.io), [NPM](https://www.npmjs.com/), and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed. Go to the [IEX Cloud] (https://iexcloud.io/) website and signup for an account to access API keys. (For real live data, you need to pay but you can experiment with their Sandbox endpoint which services dummy data.) Set environment variables locally for "IEX_API_SECRET_TOKEN" and "IEX_API_PUBLISHABLE_TOKEN." 
+Make sure you have [Ruby](https://www.ruby-lang.org), [Bundler](http://bundler.io), [NPM](https://www.npmjs.com/), and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed. Go to the [IEX Cloud](https://iexcloud.io/) website and signup for an account to access API keys. (For real live data, you need to pay but you can experiment with their Sandbox endpoint which services dummy data.) Set environment variables locally for "IEX_API_SECRET_TOKEN" and "IEX_API_PUBLISHABLE_TOKEN." 
  
 ```sh
 git clone git@github.com:heroku/trader-gater.git # or clone your own fork
