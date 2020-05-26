@@ -12,30 +12,30 @@ function Transactions(props) {
     }, []);
 
     return (
-        <Wrapper> 
+        <div> 
             <Navigation />
-            <h1>Transactions</h1>
-            <Table>
-                <TR>
-                    <TH>Symbol</TH>
-                    <TH>Company Name</TH>
-                    <TH>Total Purchase Value</TH>
-                    <TH>Number of Shares Owned</TH>
-                    <TH>Date Purchased</TH>
-                </TR>
-                {props.transactions.map(transaction => {
-                    // Need to add in grey color if status is 'equal'
-                    return <TR key={transaction.tickerSymbol}>
-                        <TD>{transaction.tickerSymbol}</TD>
-                        <TD>{transaction.stockName}</TD>
-                        <TD>{transaction.totalPrice}</TD>
-                        <TD>{transaction.quantity}</TD>
-                        <TD>{transaction.datePurchased}</TD>
-                    </TR>
-                    
-                })}
-            </Table>
-        </Wrapper>
+            <Wrapper>
+                <Table>
+                    <TRHeader>
+                        <TH colSpan={2}>Company</TH>
+                        <TH>Total Price</TH>
+                        <TH># Shares</TH>
+                        <TH>Date</TH>
+                    </TRHeader>
+                    {props.transactions.map(transaction => {
+                        // Need to add in grey color if status is 'equal'
+                        return <TR key={transaction.tickerSymbol}>
+                            <TD>{transaction.tickerSymbol}</TD>
+                            <TD>{transaction.stockName}</TD>
+                            <TD>{transaction.totalPrice}</TD>
+                            <TD>{transaction.quantity}</TD>
+                            <TD>{transaction.datePurchased}</TD>
+                        </TR>
+                        
+                    })}
+                </Table>
+            </Wrapper>
+        </div>
     )
 }
 
@@ -59,6 +59,8 @@ const Wrapper = styled.div`
     flex-direction: column;
     padding: 30px;
     width: 60%;
+    align-items: center;
+    width: 100%;
 `
 
 const Balance = styled.h3`
