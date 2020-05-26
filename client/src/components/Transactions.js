@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Navigation from '../components/Navigation'
 import {withRouter} from "react-router-dom";
 import {getTransactionsActionCreator} from '../actionCreators'
+import styled from 'styled-components'
 
 function Transactions(props) {  
 
@@ -11,30 +12,30 @@ function Transactions(props) {
     }, []);
 
     return (
-        <div> 
+        <Wrapper> 
             <Navigation />
             <h1>Transactions</h1>
-            <table>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Company Name</th>
-                    <th>Total Purchase Value</th>
-                    <th>Number of Shares Owned</th>
-                    <th>Date Purchased</th>
-                </tr>
+            <Table>
+                <TR>
+                    <TH>Symbol</TH>
+                    <TH>Company Name</TH>
+                    <TH>Total Purchase Value</TH>
+                    <TH>Number of Shares Owned</TH>
+                    <TH>Date Purchased</TH>
+                </TR>
                 {props.transactions.map(transaction => {
                     // Need to add in grey color if status is 'equal'
-                    return <tr key={transaction.tickerSymbol}>
-                        <td>{transaction.tickerSymbol}</td>
-                        <td>{transaction.stockName}</td>
-                        <td>{transaction.totalPrice}</td>
-                        <td>{transaction.quantity}</td>
-                        <td>{transaction.datePurchased}</td>
-                    </tr>
+                    return <TR key={transaction.tickerSymbol}>
+                        <TD>{transaction.tickerSymbol}</TD>
+                        <TD>{transaction.stockName}</TD>
+                        <TD>{transaction.totalPrice}</TD>
+                        <TD>{transaction.quantity}</TD>
+                        <TD>{transaction.datePurchased}</TD>
+                    </TR>
                     
                 })}
-            </table>
-        </div>
+            </Table>
+        </Wrapper>
     )
 }
 
@@ -52,3 +53,46 @@ const mdp = dispatch => {
 }
 
 export default withRouter(connect(msp, mdp)(Transactions))
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 60%;
+`
+
+const Balance = styled.h3`
+    font-size: 20px;
+    align-self: center;
+`
+
+const Table = styled.table`
+    border-collapse: collapse;
+`
+
+const TR = styled.tr`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+    &:hover {
+        background-color: #f5f5f5;
+    }
+`
+
+const TRHeader = styled.tr`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+`
+
+const TD = styled.td`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+    text-align: center;
+`
+const TH = styled.th`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+`

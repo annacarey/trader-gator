@@ -45,8 +45,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
-    width: 50%;
+    width: 60%;
 `
+
 const Balance = styled.h3`
     font-size: 20px;
     align-self: center;
@@ -78,12 +79,6 @@ const TD = styled.td`
     text-align: center;
 `
 const TH = styled.th`
-    padding: 4px;
-    vertical-align: top;
-    border: 1px solid black;
-`
-
-const THCompany = styled.th`
     padding: 4px;
     vertical-align: top;
     border: 1px solid black;
