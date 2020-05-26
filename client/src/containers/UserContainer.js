@@ -9,32 +9,8 @@ import {getPortfolioActionCreator, getTransactionsActionCreator} from '../action
 
 class UserContainer extends React.Component {  
 
-    // componentDidMount() {
-        
-    //     if (this.props.id !== "") {
-    //         // Load user's portfolio
-    //         this.props.getPortfolio(this.props.id)
-
-    //         // Load user's transactions
-    //         this.props.getTransactions(this.props.id)
-    //     } else {
-
-    //     }
-    // }
-
-    // componentDidUpdate(prevProps) {
-
-    //     if (this.props.id !== prevProps.id) {
-    //         // Load user's portfolio
-    //         this.props.getPortfolio(this.props.id)
-
-    //         // Load user's transactions
-    //         this.props.getTransactions(this.props.id)
-    //     }
-        
-    // }
-
     render() {
+        console.log('current user', this.props.user)
         return (
             <div>
                 <Switch>
@@ -50,7 +26,8 @@ class UserContainer extends React.Component {
 
 const msp = state => {
     return {
-       id: state.user.id
+       id: state.user.id,
+       user: state.user
     }
 }
 

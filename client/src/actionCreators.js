@@ -124,5 +124,18 @@ const getTransactions = transactions => ({
     payload: {transactions}
 })
 
+const logoutActionCreator = () => dispatch => {
+    return fetch('/api/logout', {
+        method: 'DELETE',
+        headers: {'content-type': 'application/json',
+        'accept': 'application/json'},
+        credentials: 'include'
+        }).then(() => dispatch(logout()))
+}
 
-export {signupUserActionCreator, loginUserActionCreator, loginUser, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator}
+const logout = () =>({
+    type: 'LOGOUT_USER'
+})
+
+
+export {signupUserActionCreator, loginUserActionCreator, loginUser, purchaseActionCreator, getPortfolioActionCreator, getTransactionsActionCreator, logoutActionCreator}

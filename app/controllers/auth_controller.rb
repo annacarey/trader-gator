@@ -28,7 +28,6 @@ class AuthController < ApplicationController
 
     def logout 
         session.clear
-        byebug
     end 
 
 end

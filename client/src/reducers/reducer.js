@@ -22,6 +22,8 @@ function reducer(state = initialState, action) {
             return {...state, error: "", user: {id: action.payload.user.id, firstName: action.payload.user.first_name, lastName: action.payload.user.last_name, email: action.payload.user.email, accountBalance: action.payload.user.account_balance}}
         case 'LOGIN_USER_ERROR':
             return {...state, error: action.payload.error}
+        case 'LOGOUT_USER':
+            return initialState
         case 'PURCHASE_STOCK':
             return {...state, transactions: [... state.transactions, action.payload]}
         case 'GET_PORTFOLIO':

@@ -1,21 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink, withRouter} from "react-router-dom";
+import {logoutActionCreator} from '../actionCreators'
 
 function Navigation(props) {  
 
     const handleClick = () => {
-        fetch('/api/logout', {
-            method: 'DELETE',
-            headers: {'content-type': 'application/json',
-            'accept': 'application/json'},
-            credentials: 'include'
-            }).then(response => response.json())
-            .then(response => {
-                
-                
-            })
-            props.history.push('/')
+        props.logout().then(() => props.history.push('/'))
     }
 
     return (
@@ -27,4 +18,10 @@ function Navigation(props) {
     )
 }
 
-export default withRouter(Navigation)
+const mdp = dispatch => {
+    return {
+        logout: () => dispatch(logoutActionCreator())
+    }
+}
+
+export default withRouter(connect(null, mdp)(Navigation))
