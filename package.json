@@ -1,7 +1,7 @@
 {
   "name": "trader-gator",
   "engines": {
-    "node": "6.3.1"
+    "node": "13.7.x"
   },
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
@@ -15,6 +15,8 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "node": "13.7.x",
+    "npm": "6.13.x"
   }
 }
