@@ -39,7 +39,7 @@ class Signup extends React.Component {
                     <Submit type="submit" value="Signup" />
                 </Form>
                 {this.props.error !== "" && <p>{this.props.error}</p>}
-                <p>Already have an account? <Link to='/login' exact>Log in here</Link></p>
+                <p>Already have an account? <Link to='/login' exact={"true"}>Log in here</Link></p>
             </Wrapper>
         )
     } 

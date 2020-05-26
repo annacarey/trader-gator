@@ -19,22 +19,23 @@ function Portfolio(props) {
             <p>{props.loading && "Loading..."}</p>
             <PortfolioValue>Portfolio Value: <strong>{props.portfolioValue}</strong></PortfolioValue>
             <Table>
-                <TRHeader>
-                    <TH colSpan={2}>Company</TH>
-                    <TH>Current Value</TH>
-                    <TH># Shares</TH>
-                </TRHeader>
-                {props.portfolio.map(portfolio => {
-                    return <TR key={portfolio.ticker_symbol}>
-                        <TD status={getTickerColor(portfolio.day_status)}>
-                            {portfolio.ticker_symbol}
-                            </TD>
-                        <TD>{portfolio.stock_name}</TD>
-                        <TD>${portfolio.total_value.toFixed(2)}</TD>
-                        <TD>{portfolio.quantity}</TD>
-                    </TR>
-                    
-                })}
+                <tbody>
+                    <TRHeader>
+                        <TH colSpan={2}>Company</TH>
+                        <TH>Current Value</TH>
+                        <TH># Shares</TH>
+                    </TRHeader>
+                    {props.portfolio.map(portfolio => {
+                        return <TR key={portfolio.ticker_symbol}>
+                            <TD status={getTickerColor(portfolio.day_status)}>
+                                {portfolio.ticker_symbol}
+                                </TD>
+                            <TD>{portfolio.stock_name}</TD>
+                            <TD>${portfolio.total_value.toFixed(2)}</TD>
+                            <TD>{portfolio.quantity}</TD>
+                        </TR>
+                    })}
+                </tbody>
             </Table>
         </Wrapper>
     )

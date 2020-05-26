@@ -17,23 +17,24 @@ function Transactions(props) {
             <Wrapper cursor={props.loading? "wait" : "auto"}>
                 <p>{props.loading && "Loading..."}</p>
                 <Table>
-                    <TRHeader>
-                        <TH colSpan={2}>Company</TH>
-                        <TH>Total Price</TH>
-                        <TH># Shares</TH>
-                        <TH>Date</TH>
-                    </TRHeader>
-                    {props.transactions.map(transaction => {
-                        // Need to add in grey color if status is 'equal'
-                        return <TR key={transaction.tickerSymbol}>
-                            <TD>{transaction.tickerSymbol}</TD>
-                            <TD>{transaction.stockName}</TD>
-                            <TD>{transaction.totalPrice}</TD>
-                            <TD>{transaction.quantity}</TD>
-                            <TD>{transaction.datePurchased}</TD>
-                        </TR>
-                        
-                    })}
+                    <tbody>
+                        <TRHeader>
+                            <TH colSpan={2}>Company</TH>
+                            <TH>Total Price</TH>
+                            <TH># Shares</TH>
+                            <TH>Date</TH>
+                        </TRHeader>
+                        {props.transactions.map(transaction => {
+                            return <TR key={transaction.tickerSymbol}>
+                                <TD>{transaction.tickerSymbol}</TD>
+                                <TD>{transaction.stockName}</TD>
+                                <TD>{transaction.totalPrice}</TD>
+                                <TD>{transaction.quantity}</TD>
+                                <TD>{transaction.datePurchased}</TD>
+                            </TR>
+                            
+                        })}
+                    </tbody>
                 </Table>
             </Wrapper>
         </div>
@@ -64,11 +65,6 @@ const Wrapper = styled.div`
     align-items: center;
     width: 100%;
     cursor: ${props => props.cursor};
-`
-
-const Balance = styled.h3`
-    font-size: 20px;
-    align-self: center;
 `
 
 const Table = styled.table`
