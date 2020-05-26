@@ -6,8 +6,7 @@
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm run build && npm run deploy",
-    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+    "heroku-postbuild": "npm run build && npm run deploy"
   },
   "dependencies": {
     "moment": "^2.26.0",
