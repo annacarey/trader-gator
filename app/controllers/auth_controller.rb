@@ -26,4 +26,9 @@ class AuthController < ApplicationController
         end 
     end 
 
+    def logout 
+        session.clear
+        byebug
+    end 
+
 end

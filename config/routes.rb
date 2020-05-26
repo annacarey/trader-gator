@@ -5,13 +5,19 @@ Rails.application.routes.draw do
     # Placeholder routes for deletion
     get '/users', to: 'users#index'
     
-    # Real routes
+    # User routes
     post '/signup', to: 'users#signup'
-    post '/purchase', to: 'transactions#create'
     get '/:id/portfolio', to: 'users#portfolio'
     get '/:id/transactions', to: 'users#transactions'
+
+
+    # Transaction route
+    post '/purchase', to: 'transactions#create'
+
+    # Session routes
     post '/login', to: 'auth#login'
     get '/auto_login', to: 'auth#auto_login'
+    delete '/logout', to: 'auth#logout'
 
   end
 

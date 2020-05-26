@@ -5,7 +5,17 @@ import {NavLink, withRouter} from "react-router-dom";
 function Navigation(props) {  
 
     const handleClick = () => {
-        props.history.push('/')
+        fetch('/api/logout', {
+            method: 'DELETE',
+            headers: {'content-type': 'application/json',
+            'accept': 'application/json'},
+            credentials: 'include'
+            }).then(response => response.json())
+            .then(response => {
+                
+                
+            })
+            props.history.push('/')
     }
 
     return (
