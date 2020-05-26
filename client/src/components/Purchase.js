@@ -16,6 +16,7 @@ function Purchase(props) {
 
     return (
         <Wrapper>
+            <Balance>Account Balance: <strong>{props.balance}</strong></Balance>
             <Form onSubmit={handleSubmit}>
                 <Input onChange={e => setTicker(e.target.value)} value={ticker} type="text" name="ticker" placeholder="Ticker symbol..." />
                 <InputQuantity onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="1" name="ticker" placeholder="# of shares..." />
@@ -29,7 +30,8 @@ function Purchase(props) {
 const msp = state => {
     return {
        id: state.user.id,
-       error: state.error
+       error: state.error,
+       balance: state.user.accountBalance
     }
 }
 
@@ -49,6 +51,11 @@ const Wrapper = styled.div`
     width: 40%;
     justify-content: center;
     align-items: center;
+`
+
+const Balance = styled.h3`
+    font-size: 20px;
+    align-self: center;
 `
 
 const Form = styled.form`

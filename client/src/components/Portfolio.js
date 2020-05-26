@@ -17,7 +17,7 @@ function Portfolio(props) {
     return (
         <Wrapper>
             <p>{props.loading && "Loading..."}</p>
-            <Balance>Current Balance: <strong>{props.balance}</strong></Balance>
+            <PortfolioValue>Portfolio Value: <strong>{props.portfolioValue}</strong></PortfolioValue>
             <Table>
                 <TRHeader>
                     <TH colSpan={2}>Company</TH>
@@ -43,7 +43,7 @@ function Portfolio(props) {
 const msp = state => {
     return {
        portfolio: state.portfolio,
-       balance: state.user.accountBalance,
+       portfolioValue: state.portfolioValue,
        id: state.user.id,
        loading: state.loading
     }
@@ -59,7 +59,7 @@ const Wrapper = styled.div`
     width: 60%;
 `
 
-const Balance = styled.h3`
+const PortfolioValue = styled.h3`
     font-size: 20px;
     align-self: center;
 `

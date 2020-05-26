@@ -10,7 +10,6 @@ import {getPortfolioActionCreator, getTransactionsActionCreator} from '../action
 class UserContainer extends React.Component {  
 
     render() {
-        console.log('current user', this.props.user)
         return (
             <div>
                 <Switch>

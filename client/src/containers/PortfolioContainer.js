@@ -31,8 +31,6 @@ function PortfolioContainer(props) {
 const msp = state => {
     return {
        id: state.user.id,
-       user: state.user,
-       transactions: state.transactions,
        loading: state.loading
     }
 }
