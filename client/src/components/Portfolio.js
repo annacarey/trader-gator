@@ -4,6 +4,16 @@ import styled from 'styled-components'
 
 function Portfolio(props) {  
 
+    const getTickerColor = status => {
+        if (status === "higher") {
+            return 'green'
+        } else if (status === "lower") {
+            return 'red'
+        } else {
+            return 'grey'
+        }
+    }
+
     return (
         <Wrapper>
             {/* Make sure account balance updates in addition to portfolio} */}
@@ -17,7 +27,9 @@ function Portfolio(props) {
                 {props.portfolio.map(portfolio => {
                     // Need to add in grey color if status is 'equal'
                     return <TR key={portfolio.ticker_symbol}>
-                        <TD style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</TD>
+                        <TD status={getTickerColor(portfolio.day_status)}>
+                            {portfolio.ticker_symbol}
+                            </TD>
                         <TD>{portfolio.stock_name}</TD>
                         <TD>${portfolio.total_value.toFixed(2)}</TD>
                         <TD>{portfolio.quantity}</TD>
@@ -75,6 +87,7 @@ const TRHeader = styled.tr`
 const TD = styled.td`
     padding: 4px;
     vertical-align: top;
+    color: ${props => props.status};
     border: 1px solid black;
     text-align: center;
 `

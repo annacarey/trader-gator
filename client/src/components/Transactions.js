@@ -13,7 +13,7 @@ function Transactions(props) {
 
     return (
         <div> 
-            <Navigation />
+            <Navigation portfolio={false} />
             <Wrapper>
                 <Table>
                     <TRHeader>

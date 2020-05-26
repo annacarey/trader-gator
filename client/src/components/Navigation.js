@@ -10,10 +10,11 @@ function Navigation(props) {
         props.logout().then(() => props.history.push('/'))
     }
 
+    console.log(props.page)
     return (
         <Wrapper>
-            <Option><MenuLink to="/portfolio" exact>Portfolio</MenuLink></Option>
-            <Option><MenuLink to="/transactions" exact>Transactions</MenuLink></Option>
+            <Option style={{borderLeft: '1px solid black'}} selected={props.portfolio? "#007EA7" : "white"}><MenuLink selected={props.portfolio? "#ffffff" : "black"}  to="/portfolio" exact>Portfolio</MenuLink></Option>
+            <Option selected={!props.portfolio? "#003249" : "white"}><MenuLink selected={!props.portfolio? "#ffffff" : "black"} to="/transactions" exact>Transactions</MenuLink></Option>
             <LogoutLink onClick={handleClick}>Logout</LogoutLink>
         </Wrapper>
     )
@@ -35,19 +36,22 @@ const Wrapper = styled.div`
 const Option = styled.div`
     cursor: pointer;
     padding: 8px;
-    padding-left: 5px;
+    padding-left: 20px;
     padding-right: 20px;
     display: flex;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     align-items: center;
+    background-color: ${props => props.selected};
     justify-content: flex-end;
 `
 
 const MenuLink = styled(NavLink)`
-    color: black;
+    color: ${props => props.selected};
     padding: 0px;
     text-decoration: none;
     &:visited {
-        color: black;
+        color: ${props => props.selected};
     }
     &:hover {
         color: #A9A9A9;
@@ -58,6 +62,10 @@ const LogoutLink = styled.button`
     border: none;
     padding: 0px;
     cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     font-size: 12px;
     &:hover {
         color: #A9A9A9;

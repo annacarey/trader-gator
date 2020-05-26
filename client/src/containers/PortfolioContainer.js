@@ -19,7 +19,7 @@ function PortfolioContainer(props) {
 
     return (
         <div>
-            <Navigation />
+            <Navigation portfolio={true} />
             <Wrapper>
                 <Portfolio />
                 <Purchase updatePortfolio={updatePortfolio} />
