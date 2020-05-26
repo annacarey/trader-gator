@@ -43,8 +43,10 @@ const loginUserActionCreator = (email, password) => dispatch => {
     .then(response => {
         if (response.error) {
             dispatch(loginUserError(response.error))
+            return response
         } else {
             dispatch(loginUser(response.user))
+            return response
         }
     })
 }

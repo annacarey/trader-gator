@@ -14,8 +14,8 @@ function UserLogin(props) {
     // Successful log in pushes to /portfolio route
     const handleSubmit = e => {
         e.preventDefault()
-        props.login(email, password).then(() => {
-            props.error === "" && props.history.push('/portfolio')})
+        props.login(email, password).then(response => {
+            !response.error && props.history.push('/portfolio')})
         }
 
     return (
