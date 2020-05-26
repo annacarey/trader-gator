@@ -76,13 +76,13 @@ const purchaseActionCreator = (ticker, quantity, userId) => dispatch => {
             currentPrice: response.transaction.current_price_per_share,
             totalPrice: response.transaction.total_price
             }
-        dispatch(purchaseStock(transaction))
+        dispatch(purchaseStock(transaction, response.balance))
       })
 }
 
-const purchaseStock = transaction => ({
+const purchaseStock = (transaction, balance) => ({
     type: 'PURCHASE_STOCK', 
-    payload: {transaction}
+    payload: {transaction, balance}
 })
 
 // Load user's portfolio

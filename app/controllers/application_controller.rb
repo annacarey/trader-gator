@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        User.find(session[:user_id]) if session[:user_id]
+        begin User.find(session[:user_id]) if session[:user_id]
+        rescue
+            nil
+        end 
     end 
+    
 
     def logged_in?
         current_user != nil

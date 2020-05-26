@@ -8,6 +8,7 @@ import {withRouter} from "react-router-dom";
 
 function PortfolioContainer(props) {
 
+    console.log(props)
     useEffect(() => {
         props.id!==""? props.getPortfolio(props.id) : props.history.push('/')
     }, []);
@@ -27,7 +28,9 @@ function PortfolioContainer(props) {
 
 const msp = state => {
     return {
-       id: state.user.id
+       id: state.user.id,
+       user: state.user,
+       transactions: state.transactions
     }
 }
 

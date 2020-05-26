@@ -25,7 +25,7 @@ function reducer(state = initialState, action) {
         case 'LOGOUT_USER':
             return initialState
         case 'PURCHASE_STOCK':
-            return {...state, transactions: [... state.transactions, action.payload]}
+            return {...state, user: {...state.user, accountBalance: action.payload.balance}}
         case 'GET_PORTFOLIO':
             return {...state, portfolio: action.payload.portfolio}
         case 'GET_TRANSACTIONS':
