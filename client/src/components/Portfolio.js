@@ -1,31 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import styled from 'styled-components'
 
 function Portfolio(props) {  
 
     return (
-        <div>
+        <Wrapper>
             {/* Make sure account balance updates in addition to portfolio} */}
-            <h3>Current Balance: {props.balance}</h3>
-            <table>
-                <tr>
-                    <th>Symbol</th>
-                    <th>Company Name</th>
-                    <th>Current Value</th>
-                    <th>Number of Shares Owned</th>
-                </tr>
+            <Balance>Current Balance: <strong>{props.balance}</strong></Balance>
+            <Table>
+                <TRHeader>
+                    <TH colSpan={2}>Company</TH>
+                    <TH>Current Value</TH>
+                    <TH># Shares</TH>
+                </TRHeader>
                 {props.portfolio.map(portfolio => {
                     // Need to add in grey color if status is 'equal'
-                    return <tr key={portfolio.ticker_symbol}>
-                        <td style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</td>
-                        <td>{portfolio.stock_name}</td>
-                        <td>{portfolio.total_value}</td>
-                        <td>{portfolio.quantity}</td>
-                    </tr>
+                    return <TR key={portfolio.ticker_symbol}>
+                        <TD style={{color: portfolio.day_status === "higher"? 'green' : 'red'}}>{portfolio.ticker_symbol}</TD>
+                        <TD>{portfolio.stock_name}</TD>
+                        <TD>${portfolio.total_value.toFixed(2)}</TD>
+                        <TD>{portfolio.quantity}</TD>
+                    </TR>
                     
                 })}
-            </table>
-        </div>
+            </Table>
+        </Wrapper>
     )
 }
 
@@ -40,3 +40,51 @@ const msp = state => {
 
 
 export default connect(msp)(Portfolio)
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 50%;
+`
+const Balance = styled.h3`
+    font-size: 20px;
+    align-self: center;
+`
+
+const Table = styled.table`
+    border-collapse: collapse;
+`
+
+const TR = styled.tr`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+    &:hover {
+        background-color: #f5f5f5;
+    }
+`
+
+const TRHeader = styled.tr`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+`
+
+const TD = styled.td`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+    text-align: center;
+`
+const TH = styled.th`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+`
+
+const THCompany = styled.th`
+    padding: 4px;
+    vertical-align: top;
+    border: 1px solid black;
+`

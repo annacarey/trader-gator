@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation'
 import {getPortfolioActionCreator} from '../actionCreators'
 import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
+import styled from 'styled-components'
 
 function PortfolioContainer(props) {
 
@@ -19,8 +20,10 @@ function PortfolioContainer(props) {
     return (
         <div>
             <Navigation />
-            <Portfolio />
-            <Purchase updatePortfolio={updatePortfolio} />
+            <Wrapper>
+                <Portfolio />
+                <Purchase updatePortfolio={updatePortfolio} />
+            </Wrapper>
         </div>
     )
 }
@@ -41,3 +44,8 @@ const mdp = dispatch => {
 
 
 export default withRouter(connect(msp, mdp)(PortfolioContainer))
+
+const Wrapper = styled.div`
+    display: flex;
+    
+`
