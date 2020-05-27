@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {purchaseActionCreator} from '../actionCreators'
 import styled from 'styled-components'
+import {roundMoney} from '../helpers/roundMoney'
 
 function Purchase(props) {  
 
@@ -18,7 +19,7 @@ function Purchase(props) {
 
     return (
         <Wrapper>
-            <Balance>Account Balance: <strong>{props.balance}</strong></Balance>
+            <Balance>Account Balance: <strong>${roundMoney(props.balance)}</strong></Balance>
             <Form onSubmit={handleSubmit}>
                 <Input onChange={e => setTicker(e.target.value)} value={ticker} type="text" name="ticker" placeholder="Ticker symbol..." />
                 <InputQuantity onChange={e => setQuantity(e.target.value)} value={quantity} type="number" min="1" name="ticker" placeholder="# of shares..." />

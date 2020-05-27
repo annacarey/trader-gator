@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components'
+import {roundMoney} from '../helpers/roundMoney'
 
 function Portfolio(props) {  
 
@@ -18,7 +19,7 @@ function Portfolio(props) {
     return (
         <Wrapper>
             <p>{props.loading && "Loading..."}</p>
-            <PortfolioValue>Portfolio Value: <strong>{props.portfolioValue}</strong></PortfolioValue>
+            <PortfolioValue>Portfolio Value: <strong>${roundMoney(props.portfolioValue)}</strong></PortfolioValue>
             <Table>
                 <tbody>
                     <TRHeader>
