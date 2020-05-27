@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
         # Get the current value of the portfolio
         portfolio_value = user.total_portfolio_value(portfolio) # Total current value of stocks owned (current price * quantity of shares, sum for all stocks)
-
+        portfolio_value = 0 if portfolio_value == nil
         render json: {portfolio: portfolio, portfolio_value: portfolio_value}
     end 
 
