@@ -33,7 +33,7 @@ class Signup extends React.Component {
                 <Form onSubmit = {this.handleSubmit}>
                     <Input onChange={e => this.setState({firstName: e.target.value})} type="text" name="firstName" placeholder="First name..." />
                     <Input onChange={e => this.setState({lastName: e.target.value})} type="text" name="lastName" placeholder="Last name..." />
-                    <Input onChange={e => this.setState({email: e.target.value})} type="text" name="email" placeholder="Last name..." />
+                    <Input onChange={e => this.setState({email: e.target.value})} type="text" name="email" placeholder="Email..." />
                     <Input onChange={e => this.setState({password: e.target.value})} type="password" name="password" placeholder="Password..." />
                     <Input onChange={e => this.setState({passwordConfirmation: e.target.value})} type="password" name="password" placeholder="Confirm password..." />
                     <Submit type="submit" value="Signup" />
