@@ -34,6 +34,15 @@ Your app should now be running on [localhost:3000](http://localhost:3000/).
 7. [React with Rails User Authentication](https://medium.com/how-i-get-it/react-with-rails-user-authentication-8977e98762f2)
 
 
+## Extensions / Ideas
+
+* Show more information about stock to the user, such as percent change, day high, etc.
+* Allow the user to sell stocks at their new levels (high or low) to replenish their account
+* Allow the user to refill their account in other ways (maybe connect a donation feature so if they donate $5 to charity, they get another $5,000)
+* Add company logos to the interface
+* Show the portfolio performance over time
+* Create another data model for Portfolio, so portfolio is stored on the backend and users can have more than one portfolio and compare performance
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
